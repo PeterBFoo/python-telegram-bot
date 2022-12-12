@@ -1,13 +1,19 @@
+
 import os
 from dotenv import load_dotenv
+from pathlib import Path
 
-file = "python-telegram-bot\quickstart\config.env"
+dotenv_path = Path('quickstart/token.env')
 
-def getToken():
-    load_dotenv(file)
-    token = os.getenv("TOKEN")
+def get(key):
+    load_dotenv(dotenv_path=dotenv_path)
 
-    if not token:
-        raise Exception(f"Couldn't read file {file}")
-    else:
-        return token
+
+    BOT_TOKEN = os.getenv('BOT_TOKEN')
+    GOOGLE_API_TOKEN = os.getenv('GOOGLE_TOKEN')
+
+    if key == "BOT_TOKEN":
+        return BOT_TOKEN
+    elif key == "GOOGLE_TOKEN":
+        return GOOGLE_API_TOKEN
+
